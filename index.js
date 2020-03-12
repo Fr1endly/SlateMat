@@ -3,6 +3,9 @@ const express = require('express')
 const httpErrors = require('http-errors')
 const pino = require('pino')
 const pinoHttp = require('pino-http')
+const connectDB = require('./connectDB')
+const cors = require('cors')
+const mongoose = require('mongoose')
 
 module.exports = function main (options, cb) {
   // Set default options
@@ -12,6 +15,9 @@ module.exports = function main (options, cb) {
   }, options)
 
   const logger = pino()
+
+  //DB
+  connectDB()
 
   // Server state
   let server
@@ -45,6 +51,8 @@ module.exports = function main (options, cb) {
 
   // Common middleware
   // app.use(/* ... */)
+  app.use(express.json());
+  app.use(cors())
   app.use(pinoHttp({ logger }))
       
   // Register routes
@@ -53,7 +61,7 @@ module.exports = function main (options, cb) {
   // Alternativly, you could setup external log handling for startup
   // errors and handle them outside the node process.  I find this is
   // better because it works out of the box even in local development.
-  require('./routes')(app, opts)
+  app.use('/', require('./routes'))
 
   // Common error handlers
   app.use(function fourOhFourHandler (req, res, next) {
@@ -70,6 +78,8 @@ module.exports = function main (options, cb) {
       }]
     })
   })
+
+
 
   // Start server
   server = app.listen(opts.port, opts.host, function (err) {

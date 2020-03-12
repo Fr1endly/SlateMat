@@ -1,9 +1,17 @@
-'use strict'
-const simple = require('./handlers/simple')
-const configured = require('./handlers/configured')
+const express = require('express')
+const Chapter = require('./models/Chapter')
 
-module.exports = function (app, opts) {
-  // Setup routes, middleware, and handlers
-  app.get('/', simple)
-  app.get('/configured', configured(opts))
-}
+const router = express.Router();
+
+router.get('/', (req, res)=>{
+  res.json({msg: 'Hello world'})
+})
+
+router.post('/chapters', async (req, res) => {
+
+
+  console.log(req.body)
+  res.json(req.body)
+})
+
+module.exports =  router;
