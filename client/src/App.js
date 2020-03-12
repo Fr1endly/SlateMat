@@ -1,4 +1,4 @@
-// Import React dependencies.
+// To-Do Refactor Editor to use useStyles()
 import React, { useMemo, useState } from "react";
 import "./App.css";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
