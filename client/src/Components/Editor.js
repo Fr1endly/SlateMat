@@ -35,7 +35,7 @@ export default function() {
           value={value}
           onChange={value => setValue(value)}
         >
-          <Editable />
+          <Editable readOnly />
         </Slate>
       </div>
       <div className="btn-control">

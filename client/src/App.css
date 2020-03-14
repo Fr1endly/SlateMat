@@ -1,18 +1,4 @@
-.Editor {
-  border: 2px black solid;
-  background:  #f6efe2;
-  width: 500px;
-  height: 300px; /* or whatever measurements you want */
-  margin: 40px auto 0 auto;
-  overflow: auto;
-}
-
-.btn-control{
-  width: 500px;
-  height: 300px; /* or whatever measurements you want */
-  margin: 5px auto 0;
-}
-
-.btn-save {
-    
+.App { 
+  background: #605856;
+  height: 100vh;
 }

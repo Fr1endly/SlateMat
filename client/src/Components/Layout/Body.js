@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import Paper from "@material-ui/core/Paper";
 import Editor from "../Editor";
 import clsx from "clsx";
 
@@ -11,7 +12,9 @@ export default ({ classes, open }) => {
         })}
       >
         <div className={classes.drawerHeader} />
-        <Editor />
+        <Paper className={classes.contentPaper}>
+          <Editor />
+        </Paper>
       </main>
     </Fragment>
   );
