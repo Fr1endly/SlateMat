@@ -1,5 +1,6 @@
 // To-Do Finish body
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -183,30 +184,32 @@ function App() {
   };
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <Header
-        classes={classes}
-        open={open}
-        handleDrawerOpen={handleDrawerOpen}
-        toggleForm={handleFormToggle}
-      />
-      <Drawer
-        titles={chapterTitles}
-        classes={classes}
-        theme={theme}
-        open={open}
-        handleDrawerClose={handleDrawerClose}
-        handleDrawerClick={handleDrawerTitleClick}
-      />
-      <Body
-        classes={classes}
-        formOpen={formOpen}
-        open={open}
-        activeChapterTitle={activeChapterTitle}
-        chapters={chapters}
-      />
-    </div>
+    <Router>
+      <div className={classes.root}>
+        <CssBaseline />
+        <Header
+          classes={classes}
+          open={open}
+          handleDrawerOpen={handleDrawerOpen}
+          toggleForm={handleFormToggle}
+        />
+        <Drawer
+          titles={chapterTitles}
+          classes={classes}
+          theme={theme}
+          open={open}
+          handleDrawerClose={handleDrawerClose}
+          handleDrawerClick={handleDrawerTitleClick}
+        />
+        <Body
+          classes={classes}
+          formOpen={formOpen}
+          open={open}
+          activeChapterTitle={activeChapterTitle}
+          chapters={chapters}
+        />
+      </div>
+    </Router>
   );
 }
 
