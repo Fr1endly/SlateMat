@@ -1,14 +1,16 @@
 import TocIcon from "@material-ui/icons/Toc";
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import clsx from "clsx";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
-import fade from "@material-ui/core/styles";
+import AddIcon from "@material-ui/icons/Add";
 
-export default ({ classes, open, handleDrawerOpen }) => {
+export default ({ classes, open, handleDrawerOpen, toggleForm }) => {
+  const [value, setValue] = useState("");
+
   return (
     <Fragment>
       <AppBar
@@ -29,12 +31,17 @@ export default ({ classes, open, handleDrawerOpen }) => {
           >
             <TocIcon />
           </IconButton>
+          <IconButton onClick={toggleForm}>
+            <AddIcon />
+          </IconButton>
           <div className={classes.searchContainer}>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
               <InputBase
+                value={value}
+                onChange={e => setValue(e.target.value)}
                 placeholder="Search…"
                 classes={{
                   root: classes.inputRoot,
@@ -46,7 +53,6 @@ export default ({ classes, open, handleDrawerOpen }) => {
           </div>
         </Toolbar>
       </AppBar>
-      >
     </Fragment>
   );
 };

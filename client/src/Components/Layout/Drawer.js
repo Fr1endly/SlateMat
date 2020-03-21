@@ -10,7 +10,14 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 
-export default ({ classes, handleDrawerClose, open, theme }) => {
+export default ({
+  classes,
+  handleDrawerClose,
+  handleDrawerClick,
+  open,
+  theme,
+  titles
+}) => {
   return (
     <Fragment>
       <Drawer
@@ -33,12 +40,16 @@ export default ({ classes, handleDrawerClose, open, theme }) => {
         </div>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
+          {titles.map((title, index) => (
+            <ListItem
+              button
+              key={title}
+              onClick={e => handleDrawerClick(title)}
+            >
               <ListItemIcon>
                 <ArrowRightIcon />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={title} />
             </ListItem>
           ))}
         </List>
